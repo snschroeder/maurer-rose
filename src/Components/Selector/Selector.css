@@ -1,0 +1,39 @@
+.selector {
+  margin: 0 auto;
+  width: 80%;
+  padding-top: 20px;
+
+}
+
+.selector-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.selector-label {
+  margin-bottom: 8px;
+}
+
+#petals, #degrees, .selector-button {
+  margin-bottom: 8px;
+  border-radius: 2px;
+  border: none;
+  background: #FFE7C2;
+  color: #4D4232;
+  padding: 4px;
+}
+
+.selector-button {
+  font-size: 16px;
+  font-weight: bold;
+  padding: 8px;
+}
+
+.selector-button:hover,
+.selector-button:active {
+  background: #3CDE71;
+  font-size: 17px;
+  transition: all ease-in-out 0.2s;
+}
