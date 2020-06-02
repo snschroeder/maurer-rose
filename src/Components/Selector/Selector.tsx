@@ -3,8 +3,8 @@ import MaurerRose from '../MaurerRose/MaurerRose'
 import './Selector.css';
 
 export default function Selector() {
-  const [petals, setPetals] = useState(2);
-  const [degrees, setDegrees] = useState(0);
+  const [petals, setPetals] = useState(6);
+  const [degrees, setDegrees] = useState(71);
 
   const handlePetalsChange = (e: any) => {
     setPetals(e.target.value);
@@ -44,6 +44,10 @@ export default function Selector() {
         
         <button type="submit" className="selector-button">Make it go!</button>
       </form>
+      <MaurerRose 
+        petals={petals}
+        degrees={degrees}
+      />
     </section>
   )
 }

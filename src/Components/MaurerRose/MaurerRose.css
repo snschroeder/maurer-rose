@@ -1,12 +1,8 @@
 .maurer-rose {
-  padding: 20px;
-  width: 100px;
-  height: 100px;
-  margin: 0 auto;
 }
 
 polygon, polyline, circle {
   fill: none;
   stroke: aliceblue;
-  stroke-width: 1;
+  stroke-width: .2;
 }
