@@ -28,21 +28,27 @@ export default function Selector() {
           Number of petals: 
         </label>
         <input 
-          type="number" 
-          id="petals" 
+          type="range"
+          min="2"
+          max="18"
+          value={petals}
+          className="selector-slider"
+          id="petals"
           onChange={(e) => handlePetalsChange(e)}
-        />
-        
+        />  
         <label htmlFor="degrees" className="selector-label">
           Degree to start from: 
           </label>
-        <input 
-          type="number" 
-          id="degrees" 
-          onChange={(e) => handleDegreesChange(e)} 
-        />
-        
-        <button type="submit" className="selector-button">Make it go!</button>
+          <input 
+            type="range"
+            min="1"
+            max="179"
+            value={degrees}
+            className="selector-slider"
+            id="degrees"
+            onChange={(e) => {handleDegreesChange(e)}}
+          />
+        {/* <button type="submit" className="selector-button">Make it go!</button> */}
       </form>
       <MaurerRose 
         petals={petals}

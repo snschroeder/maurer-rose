@@ -2,25 +2,61 @@ import React, { useState, useEffect } from 'react';
 import './MaurerRose.css';
 
 export default function MaurerRose(props: any) {
+  const [seqArray, setSeqArray] = useState<number[][]>([]);
   const [sequence, setSequence] = useState('');
+  const [roseSequence, setRoseSequence] = useState('');
   const [drawSpd, setDrawSpd] = useState(5);
   const { petals, degrees } = props;
 
   const buildSequence = (petals: number, degrees: number) => {
     let sequence:string = '';
-    let DEGREE_TO_RADIANS = Math.PI / 180
+
+    let seqArr: number[][] = [];
+    const DEGREE_TO_RADIANS = Math.PI / 180
+
     for (let i:number = 0; i < 361; i += 1) {
-      let k:number = i * degrees;
-      let r: number = 200 * Math.sin(((petals * k) * DEGREE_TO_RADIANS));
-      let x:number = r * Math.cos(k * DEGREE_TO_RADIANS);
-      let y:number = r * Math.sin(k * DEGREE_TO_RADIANS);
+      let k:number = i * degrees * DEGREE_TO_RADIANS;
+      let r: number = 200 * Math.sin(petals * k);
+      let x:number = -r * Math.cos(k);
+      let y:number = -r * Math.sin(k);
+
+      if (`${x}`.includes('e-')) {
+        x = 0;
+      }
+      if (`${y}`.includes('e-')) {
+        y = 0;
+      }
       sequence = (`${sequence} ${x},${y},`)
+      seqArr.push([x, y])
     }
-    return sequence
+    console.log(seqArr);
+    return seqArr;
+  }
+
+  const drawPolarRose = (petals: number) => {
+    let sequence:string = '';
+    const DEGREE_TO_RADIANS = Math.PI / 180;
+
+    for (let i:number = 0; i < 361; i += 1) {
+      let k:number = i * DEGREE_TO_RADIANS;
+      let r: number = 200 * Math.sin(petals * k);
+      let x:number = -r * Math.cos(k);
+      let y:number = -r * Math.sin(k);
+
+      if (`${x}`.includes('e-')) {
+        x = 0;
+      }
+      if (`${y}`.includes('e-')) {
+        y = 0;
+      }
+      sequence = `${sequence} ${x},${y},`
+    }
+    return sequence;
   }
 
   useEffect(() => {
-    setSequence(buildSequence(petals, degrees))
+    setSeqArray(buildSequence(petals, degrees))
+    setRoseSequence(drawPolarRose(petals))
   },[petals, degrees])
 
   return (
@@ -31,7 +67,8 @@ export default function MaurerRose(props: any) {
         viewBox={`-200 -200 400 400`}
         preserveAspectRatio="none"
       >
-        <polyline points={sequence} />
+        <polyline points={`${seqArray}`} className="mRose" />
+        {/* <polyline points={roseSequence} className="pRose" /> */}
       </svg>
     </section>
   )

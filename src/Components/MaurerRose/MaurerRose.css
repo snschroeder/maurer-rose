@@ -1,8 +1,11 @@
-.maurer-rose {
-}
-
-polygon, polyline, circle {
+.mRose {
   fill: none;
   stroke: aliceblue;
-  stroke-width: .2;
+  stroke-width: .3;
+}
+
+.pRose {
+  fill: none;
+  stroke: greenyellow;
+  stroke-width: .5;
 }
