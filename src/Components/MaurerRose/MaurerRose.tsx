@@ -22,7 +22,7 @@ export default function MaurerRose() {
         viewBox={`-200 -200 400 400`}
         preserveAspectRatio="none"
       >
-        <polyline points={`${seqArray}`} className="mRose" />
+        {/* <polyline points={`${seqArray}`} className="mRose" /> */}
         <polyline points={roseSequence} className="pRose" />
         <Walker petals={6} degrees={71} />
       </svg>

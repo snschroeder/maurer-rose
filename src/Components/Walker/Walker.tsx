@@ -1,49 +1,51 @@
 import React, { useState, useEffect } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { drawMaurerRose } from '../../helpers/rose'; 
-
-const Button = styled.button`
-background: transparent;
-border-radius: 3px;
-border: 2px solid palevioletred;
-color: palevioletred;
-margin: 0 1em;
-padding: 0.25em 1em;
-font: 2em;
-`;
-
-const roseArray = drawMaurerRose(6, 71);
-
-const movementArray = roseArray.map((val, ind) => (
-  `${ind * .277}% {cx: ${val[0]}; cy: ${val[1]}}`
-))
-
-console.log(movementArray);
-
-const bounce = keyframes`
-  ${movementArray.join('')}
-`
-
-const WalkingDot = styled.circle`
-  r: 2;
-  cx: 0;
-  cy: 0;
-  fill: white;
-  stroke: red;
-  animation: ${bounce} 200s infinite;
-`
+import TrailingLine from '../TrailingLine/TrailingLine';
 
 export default function Walker(props:any) {
   const { petals, degrees } = props;
+  const roseArray = drawMaurerRose(petals, degrees);
+
+  const movementArray = roseArray.map((val, ind) => (
+    `${ind * .277}% {cx: ${val[0]}; cy: ${val[1]};}`
+  ))
+
+  const trace = keyframes`
+    ${movementArray.join('')}
+  `
+
+  const WalkingDot = styled.circle`
+    r: 2;
+    cx: 0;
+    cy: 0;
+    fill: white;
+    stroke: red;
+    animation: ${trace} 200s infinite;
+  `;
+
+  // const lineTrail = keyframes`
+  //   to {stroke: blue;}
+  // `;
+
+  // const TrailingLine = styled.line`
+  //   // animation: ${lineTrail} 3s infinite;
+  //   stroke-width: .3;
+  //   fill: none;
+  //   stroke: pink;
+  // `;
+
+  const trailArray = [];
+
+  for (let i = 0; i < roseArray.length - 1; i += 1) {
+    trailArray.push(<TrailingLine x1={roseArray[i][0]} y1={roseArray[i][1]} x2={roseArray[i + 1][0]} y2={roseArray[i + 1][1]} animationDelay={i}/>)
+  }
+
 
   return (
-  //   <svg 
-  //   version="1.1"
-  //   xmlns="http://www.w3.org/2000/svg"
-  //   viewBox={`-200 -200 400 400`}
-  //   preserveAspectRatio="none"
-  // >
-    <WalkingDot />
-    // </svg>
+    <>
+      <WalkingDot />
+      {trailArray}
+    </>
   )
 }
