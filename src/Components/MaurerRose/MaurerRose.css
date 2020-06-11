@@ -1,11 +1,35 @@
+@keyframes draw_in {
+  from {
+    /* stroke-dashoffset: 0%; */
+    opacity: 0%;
+    stroke: red;
+  }
+  to {
+    /* stroke-dashoffset: 100%; */
+    opacity: 100%;
+    stroke: whitesmoke;
+  }
+}
+
+@keyframes drawRose {
+  50% {opacity: 100%; stroke: rgb(33, 33, 209);}
+}
+
 .mRose {
+  /* animation: draw_in 5s infinite; */
   fill: none;
   stroke: aliceblue;
   stroke-width: .3;
 }
 
 .pRose {
+  animation: drawRose 2s ease-in-out both infinite;
   fill: none;
   stroke: greenyellow;
   stroke-width: .5;
+}
+
+.walker {
+  stroke: white;
+  fill: white;
 }

@@ -51,8 +51,6 @@ export default function Selector() {
         {/* <button type="submit" className="selector-button">Make it go!</button> */}
       </form>
       <MaurerRose 
-        petals={petals}
-        degrees={degrees}
       />
     </section>
   )
