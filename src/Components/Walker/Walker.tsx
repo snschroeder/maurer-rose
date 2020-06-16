@@ -24,17 +24,6 @@ export default function Walker(props:any) {
     animation: ${trace} 200s infinite;
   `;
 
-  // const lineTrail = keyframes`
-  //   to {stroke: blue;}
-  // `;
-
-  // const TrailingLine = styled.line`
-  //   // animation: ${lineTrail} 3s infinite;
-  //   stroke-width: .3;
-  //   fill: none;
-  //   stroke: pink;
-  // `;
-
   const trailArray = [];
 
   for (let i = 0; i < roseArray.length - 1; i += 1) {

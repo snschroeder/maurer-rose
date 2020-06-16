@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import styled, { keyframes } from 'styled-components';
 import { drawMaurerRose, drawPolarRose } from '../../helpers/rose';
 import Walker from '../Walker/Walker';
 import './MaurerRose.css';
@@ -14,6 +15,27 @@ export default function MaurerRose() {
     setRoseSequence(drawPolarRose(petals))
   }, [petals, degrees])
 
+  const roseDraw = keyframes`
+  0% {stroke-dashoffset: 100000;}
+  12.5% {stroke-dashoffset: 87500;}
+  25% {stroke-dashoffset: 75000;}
+  37.5% {stroke-dashoffset: 62500;}
+  50% {stroke-dashoffset: 50000;}
+  62.5% {stroke-dashoffset: 37500;}
+  75% {stroke-dashoffset: 25000;}
+  87.5% {stroke-dashoffset: 12500;}
+  100% {stroke-dashoffset: 0;}
+  `
+
+  const StyledRose = styled.polyline`
+    stroke-dasharray: 100000;
+    stroke-dashoffset: 100000;
+    fill: none;
+    stroke: aliceblue;
+    stroke-width: .5;
+    animation: ${roseDraw} 20s linear alternate infinite;
+  `
+
   return (
     <section className="maurer-rose">
       <svg 
@@ -22,9 +44,9 @@ export default function MaurerRose() {
         viewBox={`-200 -200 400 400`}
         preserveAspectRatio="none"
       >
-        {/* <polyline points={`${seqArray}`} className="mRose" /> */}
+        <StyledRose points={`${seqArray}`} className="mRose" />
         <polyline points={roseSequence} className="pRose" />
-        <Walker petals={6} degrees={71} />
+        {/* <Walker petals={6} degrees={71} /> */}
       </svg>
     </section>
   )
