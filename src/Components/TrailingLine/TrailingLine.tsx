@@ -5,14 +5,18 @@ export default function TrailingLine(props:any) {
   const { x1, x2, y1, y2, animationDelay } = props;
 
   const lineTrail = keyframes`
-    50% {stroke: white; stroke-width: .5;}
+    0% {stroke-dashoffset: 800;}
+    50% {stroke-dashoffset: 400; stroke-width: .25;}
+    100% {stroke-dashoffset: 0; stroke-width: 0;}
   `;
 
   const Trail = styled.line`
-  animation: ${lineTrail} ${10 * animationDelay}ms linear forwards;
-  stroke-width: .3;
+  animation: ${lineTrail} ${5}s linear infinite;
+  stroke-width: .5;
   fill: none;
   stroke: hotpink;
+  stroke-dashoffset: 800;
+  stroke-dasharray: 800;
   `;
 
   return (

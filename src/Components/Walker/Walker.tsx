@@ -21,7 +21,7 @@ export default function Walker(props:any) {
     cy: 0;
     fill: white;
     stroke: red;
-    animation: ${trace} 200s infinite;
+    animation: ${trace} 100s infinite;
   `;
 
   const trailArray = [];
@@ -34,7 +34,7 @@ export default function Walker(props:any) {
   return (
     <>
       <WalkingDot />
-      {trailArray}
+      {/* {trailArray} */}
     </>
   )
 }
